@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--deep-forest);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--warm-gold);
+    color: var(--deep-forest);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  /* Hide default scrollbar chrome; we render a custom progress bar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--warm-gold) transparent;
+  }
+}
+
+@layer components {
+  .microlabel {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-sans text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-cta;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold-cta text-deep-forest hover:bg-gold-pale;
+  }
+
+  .btn-ghost-dark {
+    @apply btn border border-gold-cta/40 text-gold-cta hover:border-gold-cta hover:bg-gold-cta/10;
+  }
+
+  .btn-ghost {
+    @apply btn border border-forest-mid/30 text-forest-mid hover:border-forest-mid hover:bg-forest-mid/5;
+  }
+
+  .field-label {
+    @apply mb-2 block font-mono text-xs uppercase tracking-microlabel;
+  }
+
+  .field-input {
+    @apply w-full rounded-md border border-forest-mid/25 bg-white px-4 py-3 text-sm text-[color:var(--color-ink)] placeholder:text-forest-mid/40 transition-colors focus:border-gold-cta focus:outline-none focus:ring-1 focus:ring-gold-cta;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-xs text-gold-cta;
+  }
+}
+
+/* Scroll-linked reveal default for GSAP-powered elements */
+[data-reveal] {
+  opacity: 0;
+}
+
+/* Loading / transition infinity motif */
+.infinity-pulse {
+  animation: float 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,32 @@
+/* ---------------------------------------------------------------------------
+   Freelink Design Tokens
+   Single source of truth for the palette & typography (brand brief).
+   Do not introduce colors or fonts outside this block.
+--------------------------------------------------------------------------- */
+
+:root {
+  /* Palette */
+  --deep-forest: #0f2419;
+  --forest-green: #1b4332;
+  --warm-gold: #d4a017;
+  --pale-gold: #f5e6c8;
+  --cream: #faf7f2;
+
+  /* RGB channels (for Tailwind opacity modifiers) */
+  --deep-forest-rgb: 15 36 25;
+  --forest-green-rgb: 27 67 50;
+  --warm-gold-rgb: 212 160 23;
+  --pale-gold-rgb: 245 230 200;
+  --cream-rgb: 250 247 242;
+  --color-ink-rgb: 19 36 25;
+
+  /* Semantic aliases */
+  --color-bg-dark: var(--deep-forest);
+  --color-bg-light: var(--cream);
+  --color-ink: #132419;
+
+  /* Type */
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "Sora", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+}

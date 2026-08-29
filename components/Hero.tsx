@@ -1,0 +1,132 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import Link from "next/link";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dynamic from "next/dynamic";
+import { Magnetic } from "@/components/Magnetic";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const HeroLogo = dynamic(
+  () => import("@/components/three/HeroLogo").then((m) => m.HeroLogo),
+  { ssr: false, loading: () => <InfinityLoading /> }
+);
+
+function InfinityLoading() {
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      <span className="animate-float text-[120px] font-bold text-gold-cta/70">
+        ∞
+      </span>
+    </div>
+  );
+}
+
+export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        "[data-hero-line]",
+        { y: 80, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 1.2,
+          stagger: 0.14,
+          ease: "power3.out",
+          delay: 0.2,
+        }
+      );
+      gsap.fromTo(
+        "[data-hero-cta]",
+        { y: 24, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.9,
+          stagger: 0.1,
+          delay: 0.9,
+          ease: "power3.out",
+        }
+      );
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative flex min-h-screen items-center overflow-hidden bg-white text-forest-mid"
+    >
+      {/* Watermarked infinity motif */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, #D4A017 1px, transparent 0)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="container relative z-10 grid items-center gap-12 py-28 md:grid-cols-2">
+        <div>
+          <p
+            data-hero-line
+            className="microlabel mb-6 inline-block border border-gold-cta/50 px-3 py-1.5 text-gold-cta bg-white/80 backdrop-blur-sm"
+          >
+            Curated hiring, by hand
+          </p>
+
+          <h1
+            data-hero-line
+            className="text-6xl leading-[1.05] md:text-7xl lg:text-8xl text-forest-mid"
+            style={{ color: "#1b4332" }}
+          >
+            No profiles.
+            <br />
+            <span className="text-gold-cta">Just people.</span>
+          </h1>
+
+          <p
+            data-hero-line
+            className="mt-8 max-w-md text-lg leading-relaxed text-forest-mid/80"
+          >
+            We match vetted professionals with teams that actually need them —
+            no scrolling, no noise, no guesswork. One human calls it, then we
+            make it happen.
+          </p>
+
+          <div data-hero-cta className="mt-10 flex flex-wrap gap-4">
+            <Magnetic>
+              <Link href="/business#brief" className="btn-gold">
+                I&apos;m hiring
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <Link href="/talent#apply" className="btn-ghost">
+                I&apos;m looking for work
+              </Link>
+            </Magnetic>
+          </div>
+
+          <p data-hero-cta className="mt-8 font-mono text-xs uppercase tracking-microlabel text-forest-mid/50">
+            Pay only after you hire. That&apos;s the deal.
+          </p>
+        </div>
+
+        <div className="relative h-[380px] md:h-[520px]">
+          <HeroLogo className="absolute inset-0" />
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+        <span className="microlabel text-forest-mid/40">Scroll</span>
+      </div>
+    </section>
+  );
+}

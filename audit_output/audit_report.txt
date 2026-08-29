@@ -1,0 +1,107 @@
+﻿# Next.js Project Audit Report - D:\freelink
+
+## Project Overview
+
+- Framework: Next.js 14.2.35 with App Router
+- Language: TypeScript / React
+- Total Source Files: 74 files (excluding node_modules and .next build cache)
+- Dependencies: 18 production, 15 dev
+
+## 1. FULL FILE LISTING BY DIRECTORY
+
+### app/ (14 files - Next.js App Router pages)
+- app/globals.css
+- app/layout.tsx - Root layout, metadata, imports Nav/Footer/siteConfig
+- app/page.tsx - Home page, imports 9 components + siteConfig
+- app/admin/page.tsx - Admin dashboard overview
+- app/admin/business/page.tsx - Business submissions table
+- app/admin/talent/page.tsx - Talent submissions table
+- app/admin/partners/page.tsx - Partner applications table
+- app/admin/login/page.tsx - Admin authentication login
+- app/business/page.tsx - Business hiring page
+- app/partner/page.tsx - Partner onboarding page
+- app/talent/page.tsx - Talent registration page
+- app/thank-you/page.tsx - Thank you redirect page
+
+### components/ (58 files - UI components)
+- Nav.tsx - Main navigation header
+- Footer.tsx - Footer with site info
+- About.tsx - About section
+- HomeCta.tsx - Home CTA section
+- HowItWorks.tsx - Steps overview
+- Industries.tsx - Industry tags
+- Steps.tsx - Generic steps component
+- BusinessForm.tsx - Hiring request form
+- PartnerForm.tsx - Partnership request form
+- TalentForm.tsx - Talent application form
+- Wizard.tsx - Multi-step form wrapper
+- Badge.tsx - Status badge component
+- Button.tsx - Primary button component
+- primitives.tsx - Form field primitives (CheckboxField, ChoiceGroup, etc.)
+- HeroLogo.tsx - 3D animated logo
+- InfinityMark.tsx - Three.js infinity torus scene
+- Reveal.tsx - GSAP reveal-on-scroll
+- TwoWaySplit.tsx - Dual-column layout
+- ValueCards.tsx - Feature card grid
+- Magnetic.tsx - Cursor-following magnetic effect
+- Tilt.tsx - 3D tilt effect
+- Comparison.tsx - Comparison table
+- AdminGate.tsx - Admin authentication wrapper
+- Auth.tsx - Admin auth hook
+- DataTable.tsx - Submission data table
+- DetailDrawer.tsx - Submission detail drawer
+- StatCard.tsx - Statistic card with sparkline
+
+### lib/ (7 files - Libraries & utilities)
+- firebase.ts - Firebase initialization & config check
+- firestore.ts - Firestore operations, dev fallback
+- site.ts - siteConfig (name, tagline, url, emails)
+- submit.ts - Application submission (Cloudinary + Firestore)
+- types.ts - Application types, submission interfaces
+- validation/schemas.ts - Zod schemas for forms
+- utils.ts - cn() utility, formatDate, formatTime, downloadCsv
+
+### styles/ (1 file)
+- tokens.css - Design tokens (palette, typography)
+
+### public/ (3 files)
+- eternity-logo.png - Logo image
+- favicon.svg - Favicon
+- og.svg - Open Graph image
+
+## 2. IMPORT DEPENDENCY MAP
+
+### @/components/* imports (48 found across codebase)
+- layout.tsx: Nav, Footer, siteConfig
+- page.tsx: Hero, ValueCards, About, TwoWaySplit, HowItWorks, Industries, Founder, HomeCta
+- Admin gate/overview: AdminGate, DataTable, subscribeSubmissions
+- Business page: PageHero, Comparison, Steps, Industries, BusinessForm
+- Talent page: PageHero, TalentHow, TalentForm
+- Partner page: PageHero, PartnerForm
+- Various components: Reveal, Tilt, Magnetic imported within component files
+
+### @/lib/* imports (35 found across codebase)
+- siteConfig: layout.tsx, page.tsx, Footer, Nav, DataTable, AdminGate, AdminOverviewPage
+- utils (cn): Most components for className merging
+- types: DataTable, DetailDrawer, AdminGate, AdminOverviewPage
+- firestore: DataTable, AdminOverviewPage (subscribeSubmissions)
+- firebase: Auth.tsx, firestore.ts, submit.ts
+- validation schemas: BusinessForm, PartnerForm, TalentForm
+- submit: BusinessForm, PartnerForm, TalentForm
+
+### Third-party imports
+- three: 1 file (InfinityMark.tsx - full 3D scene)
+- framer-motion: ~15 files throughout codebase
+- gsap: 3 files (Hero, Comparison, Reveal)
+- firebase: 3+ files (auth, firestore, submit)
+- zod: 3 files (validation schemas and Wizard)
+- react-hook-form: 4 files (forms and Wizard)
+- next/dynamic: 1 file (Hero.tsx - dynamic imports)
+- @react-three/fiber: 1 file (InfinityMark.tsx)
+- @react-three/drei: 1 file (InfinityMark.tsx)
+- @hookform/resolvers: 1 file (Wizard.tsx)
+
+### External API references (environment variables only)
+- cloudinary - Referenced via NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME and NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET in submit.ts
+- firebase env vars: NEXT_PUBLIC_FIREBASE_API_KEY, AUTH_DOMAIN, PROJECT_ID, STORAGE_BUCKET, MESSAGING_SENDER_ID, APP_ID in firebase.ts
+- NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_ADMIN_EMAILS in site.ts

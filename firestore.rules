@@ -1,0 +1,110 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid));
+    }
+
+    function isNonEmptyString(v) {
+      return v is string && v.size() > 0 && v.size() <= 2000;
+    }
+
+    function isValidEmail(v) {
+      return isNonEmptyString(v) && v.matches('.*@.*');
+    }
+
+    function isOptionalString(v) {
+      return v == null || v == '' || isNonEmptyString(v);
+    }
+
+    function isSubmissionCreate(expectedType) {
+      let doc = request.resource.data;
+      return doc.status == 'new'
+        && doc.type == expectedType
+        && !('hp' in doc && doc.hp is string && doc.hp.size() > 0);
+    }
+
+    // ---- Talents ----
+
+    match /talentSubmissions/{id} {
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+      allow create: if isSubmissionCreate('talent')
+        && isNonEmptyString(request.resource.data.get('fullName', null))
+        && isValidEmail(request.resource.data.get('email', null))
+        && isNonEmptyString(request.resource.data.get('city', null))
+        && isNonEmptyString(request.resource.data.get('country', null))
+        && request.resource.data.get('primarySkills', []) is list
+        && request.resource.data.get('primarySkills', []).size() > 0
+        && request.resource.data.get('primarySkills', []).size() <= 20
+        && isNonEmptyString(request.resource.data.get('experienceLevel', null))
+        && isNonEmptyString(request.resource.data.get('availability', null))
+        && isOptionalString(request.resource.data.get('phone', null))
+        && isOptionalString(request.resource.data.get('primarySkillsOther', null))
+        && isOptionalString(request.resource.data.get('portfolioUrl', null))
+        && isOptionalString(request.resource.data.get('tools', null))
+        && isOptionalString(request.resource.data.get('experienceDetails', null))
+        && isOptionalString(request.resource.data.get('expectedRate', null))
+        && isOptionalString(request.resource.data.get('referralSource', null))
+        && isOptionalString(request.resource.data.get('resumeFileUrl', null));
+    }
+
+    // ---- Business (hiring) ----
+
+    match /businessSubmissions/{id} {
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+      allow create: if isSubmissionCreate('hiring')
+        && isNonEmptyString(request.resource.data.get('companyName', null))
+        && isNonEmptyString(request.resource.data.get('contactName', null))
+        && isValidEmail(request.resource.data.get('email', null))
+        && request.resource.data.get('services', []) is list
+        && request.resource.data.get('services', []).size() > 0
+        && request.resource.data.get('services', []).size() <= 20
+        && isNonEmptyString(request.resource.data.get('projectDescription', null))
+        && isNonEmptyString(request.resource.data.get('budget', null))
+        && isNonEmptyString(request.resource.data.get('budgetCurrency', null))
+        && isNonEmptyString(request.resource.data.get('deadline', null))
+        && isOptionalString(request.resource.data.get('phone', null))
+        && isOptionalString(request.resource.data.get('otherService', null))
+        && isOptionalString(request.resource.data.get('referenceFileUrl', null))
+        && isOptionalString(request.resource.data.get('additionalNotes', null));
+    }
+
+    // ---- Partners ----
+
+    match /partnerSubmissions/{id} {
+      allow read: if isAdmin();
+      allow update, delete: if isAdmin();
+      allow create: if isSubmissionCreate('partner')
+        && isNonEmptyString(request.resource.data.get('businessName', null))
+        && isNonEmptyString(request.resource.data.get('contactName', null))
+        && isValidEmail(request.resource.data.get('email', null))
+        && isNonEmptyString(request.resource.data.get('industry', null))
+        && isNonEmptyString(request.resource.data.get('companySize', null))
+        && isNonEmptyString(request.resource.data.get('hiringType', null))
+        && isNonEmptyString(request.resource.data.get('workMode', null))
+        && isNonEmptyString(request.resource.data.get('whyPartner', null))
+        && isOptionalString(request.resource.data.get('phone', null))
+        && isOptionalString(request.resource.data.get('websiteUrl', null))
+        && isOptionalString(request.resource.data.get('designation', null))
+        && isOptionalString(request.resource.data.get('rolesHired', null));
+    }
+
+    // ---- Admin users ----
+
+    match /adminUsers/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    // ---- Wildcard: deny all other reads/writes ----
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
