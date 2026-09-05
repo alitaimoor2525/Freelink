@@ -14,10 +14,9 @@ export function Founder() {
         viewport={{ once: true, amount: 0.3 }}
         className="container mx-auto px-4 md:px-6 max-w-5xl"
       >
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl">
         <div className="grid md:grid-cols-2 gap-8 items-start">
           {/* LEFT COLUMN: Founder info */}
-          <div className="sticky top-24 md:top-24 w-full md:w-auto z-10">
+          <div className="w-full md:w-auto z-10">
             {/* "MEET THE FOUNDER" label */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -142,7 +141,7 @@ export function Founder() {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.82 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
               viewport={{ once: true, amount: 0.3 }}
             >
               Businesses weren&apos;t necessarily lacking access to skilled people.
@@ -153,22 +152,10 @@ export function Founder() {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
-              viewport={{ once: true, amount: 0.3 }}
-            >
-              That&apos;s where the idea for Freelink came from.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.98 }}
               viewport={{ once: true, amount: 0.3 }}
             >
-              Taiba wanted to build something that connected the two sides more
-              intentionally, a space where businesses could find the talent they
-              actually need, and where talented professionals could connect with
-              opportunities without getting lost in an overcrowded marketplace.
+              That&apos;s where the idea for Freelink came from.
             </motion.p>
 
             <motion.p
@@ -196,8 +183,7 @@ export function Founder() {
             </motion.p>
           </div>
         </div>
-      </div>
-    </motion.div>
-  </section>
+      </motion.div>
+    </section>
   );
 }
