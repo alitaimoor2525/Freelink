@@ -108,7 +108,7 @@ export function Hero() {
               </Link>
             </Magnetic>
             <Magnetic>
-              <Link href="/talent#apply" className="btn-ghost">
+              <Link href="/talent#apply" className="btn-gold">
                 I&apos;m looking for work
               </Link>
             </Magnetic>

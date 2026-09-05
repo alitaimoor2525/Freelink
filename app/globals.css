@@ -62,7 +62,7 @@
   }
 
   .btn-ghost {
-    @apply btn border border-forest-mid/30 text-forest-mid hover:border-forest-mid hover:bg-forest-mid/5;
+    @apply btn border border-gold-cta text-gold-cta hover:border-gold-cta hover:bg-gold-cta/10;
   }
 
   .field-label {
