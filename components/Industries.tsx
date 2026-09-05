@@ -28,7 +28,7 @@ export function Industries({ id = "industries" }: { id?: string }) {
             One network, every kind of work.
           </h2>
           <p className="mt-4 max-w-lg text-forest-mid/80">
-            If it can be done well and done remotely, we likely cover it. And if
+            If it can be done well, we likely cover it. And if
             it&apos;s not listed, ask — the answer is often yes.
           </p>
         </Reveal>

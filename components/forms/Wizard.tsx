@@ -57,7 +57,17 @@ export function Wizard({
 
   const finish = async () => {
     const ok = await stepValid();
-    if (!ok) return;
+    if (!ok) {
+      // Find the first step with errors and navigate back to it
+      const erroneousStepIndex = steps.findIndex((s) =>
+        s.fields.some((f) => f in form.formState.errors)
+      );
+      if (erroneousStepIndex >= 0 && erroneousStepIndex < step) {
+        setStep(erroneousStepIndex);
+      }
+      setSubmitError("Please fill in all required fields before submitting.");
+      return;
+    }
     setSubmitting(true);
     setSubmitError(null);
     try {

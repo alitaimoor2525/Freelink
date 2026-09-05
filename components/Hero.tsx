@@ -60,12 +60,12 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-white text-forest-mid"
+      className="relative flex min-h-screen items-center overflow-hidden bg-forest-mid text-white"
     >
       {/* Watermarked infinity motif */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
             "radial-gradient(circle at 1px 1px, #D4A017 1px, transparent 0)",
@@ -77,28 +77,28 @@ export function Hero() {
         <div>
           <p
             data-hero-line
-            className="microlabel mb-6 inline-block border border-gold-cta/50 px-3 py-1.5 text-gold-cta bg-white/80 backdrop-blur-sm"
+            className="microlabel mb-6 inline-block border border-gold-cta/50 px-3 py-1.5 text-gold-cta bg-white/10 backdrop-blur-sm"
           >
             Curated hiring, by hand
           </p>
 
           <h1
             data-hero-line
-            className="text-6xl leading-[1.05] md:text-7xl lg:text-8xl text-forest-mid"
-            style={{ color: "#1b4332" }}
+            className="text-6xl leading-[1.05] md:text-7xl lg:text-8xl"
           >
-            No profiles.
+            <span className="text-white">No profiles.</span>
             <br />
             <span className="text-gold-cta">Just people.</span>
           </h1>
 
           <p
             data-hero-line
-            className="mt-8 max-w-md text-lg leading-relaxed text-forest-mid/80"
+            className="mt-8 max-w-md text-lg leading-relaxed text-white/80"
           >
-            We match vetted professionals with teams that actually need them —
-            no scrolling, no noise, no guesswork. One human calls it, then we
-            make it happen.
+            Freelink connects real talent with real businesses, without the noise of
+            endless profiles, algorithms, or empty promises. We find the right person
+            for the right work, and we make sure both sides actually get what they came
+            for.
           </p>
 
           <div data-hero-cta className="mt-10 flex flex-wrap gap-4">
@@ -114,7 +114,7 @@ export function Hero() {
             </Magnetic>
           </div>
 
-          <p data-hero-cta className="mt-8 font-mono text-xs uppercase tracking-microlabel text-forest-mid/50">
+          <p data-hero-cta className="mt-8 font-mono text-xs uppercase tracking-microlabel text-gold-cta/70">
             Pay only after you hire. That&apos;s the deal.
           </p>
         </div>
@@ -125,7 +125,7 @@ export function Hero() {
       </div>
 
       <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
-        <span className="microlabel text-forest-mid/40">Scroll</span>
+        <span className="microlabel text-white/40">Scroll</span>
       </div>
     </section>
   );

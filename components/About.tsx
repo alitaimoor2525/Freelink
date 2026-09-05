@@ -15,14 +15,11 @@ export function About() {
         <Reveal delay={0.1}>
           <div className="space-y-5 text-lg leading-relaxed text-forest-mid/85">
             <p>
-              Most marketplaces drown you in profiles and let the algorithms
-              sort the rest. We think that&apos;s backwards.
-            </p>
-            <p>
-              Freelink works the way good hiring actually works — by hand. A
-              person reads your story, understands your work, and makes a
-              careful match. The result is an introduction you can trust, not a
-              list you have to scrutinize.
+              Most hiring platforms make you do all the work. You scroll, you guess, you
+              message ten people hoping one gets back to you. Freelink works differently.
+              We sit in the middle and actually pay attention, learning what a business
+              needs and what a person can really do, then bringing the two together
+              ourselves.
             </p>
             <p className="font-serif text-2xl italic text-forest-mid">
               No profiles. Just people.

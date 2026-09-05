@@ -16,7 +16,7 @@ export function HomeCta() {
             No profiles, just people
           </p>
           <h2 className="mx-auto max-w-2xl text-5xl leading-tight md:text-7xl">
-            Ready to hire? <span className="font-serif italic">Let&apos;s go.</span>
+            Ready to start? <span className="font-serif italic">Let&apos;s go.</span>
           </h2>
           <p className="mx-auto mt-5 max-w-md text-deep-forest/75">
             Tell us what you need and we&apos;ll find the person. You only pay

@@ -12,7 +12,7 @@ if (typeof window !== "undefined") {
 // Brand mark (Warm Gold infinite-link) + "Freelink" wordmark in DM Serif
 // Display. Infinity mark is the uploaded logo (transparent PNG, gold-tinted);
 // the wordmark is set in DM Serif Display so both stay crisp on any backdrop.
-const INK = "#132419";
+const INK = "#FFFFFF";
 
 /**
  * The Freelink logo with light 3D motion: cursor-linked tilt, a slow float,

@@ -54,7 +54,7 @@ export function TwoWaySplit() {
             href="/business#brief"
             kicker="For business"
             title={<>Hire people who can actually deliver.</>}
-            body="We do the vetting and bring a short, considered introduction. You only pay once they start."
+            body="Tired of sifting through hundreds of profiles hoping one of them replies? We do that work for you. Tell us what you need, and we'll bring you pre-screened talent worth your time, no contracts, no upfront fees. You only pay when you hire."
             cta="Start hiring"
             delay={0.1}
           />
@@ -62,7 +62,7 @@ export function TwoWaySplit() {
             href="/talent#apply"
             kicker="For talent"
             title={<>Let your skills do the talking.</>}
-            body="Share your work once. We advocate for you and connect you to roles that genuinely fit."
+            body="You're good at what you do. You shouldn't have to sell yourself in a hundred different places to prove it. Join Freelink, show us your work, and let us bring the right opportunities to you."
             cta="Find your work"
             delay={0.2}
           />
