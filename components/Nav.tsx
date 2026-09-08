@@ -87,13 +87,13 @@ export function Nav() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className={cn("lg:hidden text-forest-mid")}
+          className={cn("lg:hidden rounded-md bg-forest-mid p-2 text-white")}
           aria-label="Toggle menu"
           aria-expanded={open}
         >
           <span className="flex h-6 w-7 flex-col justify-center gap-1.5">
-            <span className={cn("block h-0.5 w-7 bg-current transition-transform", open && "translate-y-2 rotate-45")} />
-            <span className={cn("block h-0.5 w-7 bg-current transition-transform", open && "-translate-y-2 -rotate-45")} />
+            <span className="block h-0.5 w-7 bg-white transition-transform transform duration-300" />
+            <span className="block h-0.5 w-7 bg-white transition-transform transform duration-300" />
           </span>
         </button>
       </nav>
