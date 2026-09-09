@@ -134,7 +134,20 @@ export function Wizard({
             <div className="mt-8 space-y-5">{steps[step].content(form)}</div>
           </motion.div>
         </AnimatePresence>
+        {submitError && (
+          <p className="mt-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {submitError}
+          </p>
+        )}
         <div className="mt-8 flex items-center justify-between border-t border-forest-mid/10 pt-6">
+          <button
+            type="button"
+            onClick={back}
+            disabled={step === 0 || submitting}
+            className="btn !px-4 !py-2.5 !text-[color:var(--color-ink)] disabled:opacity-40"
+          >
+            Back
+          </button>
           {isLast ? (
             <button
               type="button"
